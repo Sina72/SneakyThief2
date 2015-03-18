@@ -16,6 +16,7 @@ public class MapBuilder {
 	}
 	public Map buildDefaultMap(int number)
 	{
+		//TODO: create a function like createWall(start coords, end coords) to make walls in a more efficent way
 		 Map map = null;
 		switch(number){
 			case 0: map = new Map(200, 200);
@@ -27,5 +28,6 @@ public class MapBuilder {
 		}
 		return map;
 	}
+	
 	
 }
