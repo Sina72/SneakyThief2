@@ -1,6 +1,10 @@
 package model.commands;
 
 public class Coordinates {
+	public Coordinates(int x, int y)
+	{
+		setCoordinates(x, y);
+	}
 	public void setCoordinates(int x, int y)
 	{
 		this.x = x;
