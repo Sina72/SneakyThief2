@@ -11,16 +11,11 @@ import java.util.Observer;
 
 import javax.swing.JPanel;
 
+import com.sun.corba.se.spi.orbutil.fsm.Guard;
+
+import model.Intruder;
 import model.Map;
-import model.geometry.Circular;
-import model.geometry.Line;
-import model.geometry.Polygonal;
-import model.mapElements.MapPlacement;
-import model.mapElements.Obstruction;
-import model.mapElements.agents.Guard;
-import model.mapElements.agents.Intruder;
-import model.mapElements.areas.Area;
-import model.mapElements.areas.Sentry;
+import model.commands.GridState;
 
 /**
  * Draws a map on a JPanel
@@ -50,14 +45,14 @@ public class MapPanel extends JPanel implements Observer {
 	 * 
 	 * @return
 	 */
-	private double scale(double meters) {
-		double widthPanel = this.getWidth();
-		double heightPanel = this.getHeight();
-		double scaleHeight = widthPanel/map.getMapHeight();
-		double scaleWidth = heightPanel/map.getMapWidth();
-		this.scale = Math.min(scaleHeight, scaleWidth)/4000;
-		return meters * PX_PER_M * scale;
-	}
+//	private double scale(double meters) {
+//		double widthPanel = this.getWidth();
+//		double heightPanel = this.getHeight();
+//		double scaleHeight = widthPanel/map.getMapHeight();
+//		double scaleWidth = heightPanel/map.getMapWidth();
+//		this.scale = Math.min(scaleHeight, scaleWidth)/4000;
+//		return meters * PX_PER_M * scale;
+//	}
 
 	@Override
 	public void update(Observable o, Object arg) {
@@ -70,61 +65,98 @@ public class MapPanel extends JPanel implements Observer {
 		g.drawLine(10, 10, 50, 50);
 	}
 
-	public void drawPlacement(MapPlacement placement, Graphics g) {
+	public void drawMap(Graphics g) {
 
 		Graphics2D g2 = (Graphics2D) g;
-		
-		//Color coding
-		if(placement instanceof Guard)
-			g2.setColor(Color.GREEN);
-		else if(placement instanceof Obstruction)
-			g2.setColor(Color.WHITE);
-		else if(placement instanceof Intruder)
-			g2.setColor(Color.RED);
-		else if(placement instanceof Area)
+
+		GridState currentstate = null;
+
+		// TODO: Get the map and the placements
+		// TODO: Finish draw methods
+		for(int i = 0;i<map.getMap().length;i++)
 		{
-			if(placement instanceof Sentry)
-				g2.setColor(Color.CYAN);
-			else
-				g2.setColor(Color.DARK_GRAY);	
-		}
-		else
-			g2.setColor(Color.GRAY); //Default color
-		
-		// Shape is circular
-		//?Scale works from meters to pixels, does this work then?
-		if (placement.getShape() instanceof Circular) {
-			double startx, starty, radius;
-			startx = scale(placement.getCoordinate().getX());
-			starty = scale(placement.getCoordinate().getY());
-			radius = scale(((Circular) placement.getShape())
-					.getRadius());
-
-			g2.draw(new Ellipse2D.Double(startx, starty, radius * 2,
-					radius * 2));
-		}
-
-		// Shape is Polygonal
-		if (placement.getShape() instanceof Polygonal) {
-
-			List<Line> lines = ((Polygonal) placement.getShape())
-					.toLines();
-			for (Line l : lines) {
-				double startx, starty, endx, endy;
-				startx = scale(placement.getCoordinate()
-						.plus(l.getBegin()).getX());
-				starty = scale(placement.getCoordinate()
-						.plus(l.getBegin()).getY());
-				endx = scale(placement.getCoordinate()
-						.plus(l.getEnd()).getX());
-				endy = scale(placement.getCoordinate()
-						.plus(l.getEnd()).getY());
+			for(int j = 0; j<map.getMap()[0].length;j++)
+			{	
+				currentstate = map.getMap()[i][j];
+				//CHANGE COLOR DEPENDING ON THE GRIDSTATE
+				switch(currentstate)
+				{
+					case Wall:
+					{
+						g2.setColor(Color.black);
+					}
+					case Guard:
+					{
+						g2.setColor(Color.green);
+					}
+					case Intruder:
+					{
+						g2.setColor(Color.red);
+					}
+					case Sentry:
+					{
+						g2.setColor(Color.blue);
+					}
+					case SentryGuard:
+					{
+						g2.setColor(Color.cyan);
+					}
+					case Shade:
+					{
+						g2.setColor(Color.gray);
+					}
+					case ShadeGuard:
+					{
+						g2.setColor(new Color(0,200,0));
+					}
+					case ShadeIntruder:
+					{
+						g2.setColor(new Color(200,0,0));
+					}
+					case Window:
+					{
+						g2.setColor(Color.yellow);
+					}
+					case Door:
+					{
+						g2.setColor(new Color(102,51,0));//Brown
+					}
+					case Target:
+					{
+						g2.setColor(Color.orange);
+					}
+					case TargetGuard:
+					{
+						g2.setColor(new Color(107,142,35));
+					}
+					case TargetIntruder:
+					{
+						g2.setColor(Color.magenta);
+					}
+					case Tree:
+					{
+						g2.setColor(new Color(128,128,0));
+					}
+					case OuterWall:
+					{
+						g2.setColor(Color.DARK_GRAY);
+					}
+					case Empty:
+					{
+						g2.setColor(Color.white);
+					}
+					
+				default:
+					break;
+				}
 				
-				//TODO: Rotation implementation (from currentplacement.getOrientation())
-				g2.draw(new Line2D.Double(startx, starty, endx, endy));
+				g2.drawRect(i*10, j*10, 5, 5);
+				
 			}
 		}
+
 	}
+	
 
 	public void paintComponent(Graphics g) {
 
@@ -132,9 +164,7 @@ public class MapPanel extends JPanel implements Observer {
 
 		// TODO: Get the map and the placements
 		// TODO: Finish draw methods
-		for(MapPlacement placement : map.getPlacements()){
-			drawPlacement(placement, g);
-		}
+		drawMap(g);
 
 	}
 }

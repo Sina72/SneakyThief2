@@ -7,8 +7,6 @@ import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import controller.GameController;
-
 /**
  * Panel with user controls
  * 

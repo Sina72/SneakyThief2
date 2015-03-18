@@ -5,7 +5,8 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
-import controller.GameController;
+import model.Map;
+
 
 public class MainFrame extends JFrame {
 	
@@ -19,17 +20,23 @@ public class MainFrame extends JFrame {
 		setSize(700,500);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-		this.add(new EditorPanel(), BorderLayout.WEST);
-		this.add(new ControllerPanel(), BorderLayout.NORTH);
+		//Create Panels
+		EditorPanel editPanel = new EditorPanel();
+		ControllerPanel controlPanel = new ControllerPanel();
+		Map map = new Map(200,200);
+		MapPanel mapPanel = new MapPanel(map);
+		this.add(editPanel, BorderLayout.WEST);
+		this.add(controlPanel, BorderLayout.NORTH);
+		this.add(mapPanel,BorderLayout.EAST);
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		this.setVisible(true);
 	}
 	
-	public void connectGameController(GameController controller){
-		MapPanel mapPanel = new MapPanel(controller.getMap());
-		controller.addObserver(mapPanel);
-		this.add(mapPanel, BorderLayout.CENTER);
-	}
+//	public void connectGameController(GameController controller){
+//		MapPanel mapPanel = new MapPanel(controller.getMap());
+//		controller.addObserver(mapPanel);
+//		this.add(mapPanel, BorderLayout.CENTER);
+//	}
 	
 	/**
 	 * Get the input values from the editor panel
