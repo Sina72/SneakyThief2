@@ -1,10 +1,31 @@
 package controller;
 
+import model.Map;
+import model.commands.GridState;
+
 public class MapBuilder {
 
-	public void buildMap(int width, int height);
-	{
-		//BuildMap
-		;
+	public Map buildMap(int width, int height) {
+		return null;
 	}
+
+		//BuildMap
+	public Map buildDefaultMap()
+	{
+		return buildDefaultMap(0);
+	}
+	public Map buildDefaultMap(int number)
+	{
+		 Map map = null;
+		switch(number){
+			case 0: map = new Map(200, 200);
+					map.getMap()[0][0] = GridState.OuterWall;
+					map.getMap()[10][10] = GridState.Wall;
+					break;
+			default: map = null;
+					break;
+		}
+		return map;
+	}
+	
 }

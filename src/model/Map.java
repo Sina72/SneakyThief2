@@ -2,7 +2,16 @@ package model;
 import model.commands.*;
 
 public class Map {
+	public Map (int width, int height)
+	{
+		theMap = new GridState[width][height];
+	}
 	
-	GridState[][] theMap = new GridState[200][200];
+	public GridState[][] getMap()
+	{
+		return theMap;
+	}
+	
+	private GridState[][] theMap;
 
 }

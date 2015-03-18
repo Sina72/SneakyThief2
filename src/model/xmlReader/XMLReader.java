@@ -1,4 +1,4 @@
-package model.xmlReader.xmlReader;
+package model.xmlReader;
 
 
 import javax.xml.parsers.DocumentBuilderFactory;
