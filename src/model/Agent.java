@@ -8,6 +8,7 @@ public class Agent {
 	
 	public Agent(Coordinates coord) {
 		// TODO Auto-generated constructor stub
+		coord = m_coords;
 	}
 	
 	public Move getMove()
@@ -25,7 +26,13 @@ public class Agent {
 		
 	}
 	
+	public Coordinates getCoordinates()
+	{
+		return m_coords;
+	}
+	
 	private AgentVariable m_vars;
 	private AgentConstants m_const;
+	private Coordinates m_coords;
 
 }

@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import model.*;
 
 public class GameMain {
@@ -12,10 +14,17 @@ public class GameMain {
 		AgentIndex agentIndex = new AgentIndex(map);
 		
 		/* add all initialistations before this point */
-		StepUpdater updater = new StepUpdater(0.1);
+		MoveAgents moveAgents = new MoveAgents(agentIndex.getGuardList());
+		StepUpdater updater = new StepUpdater(moveAgents);
 		
 		
-		// TODO Auto-generated method stub
+		/*Run the steps */
+		
+		//TODO: THIS SHOULD BE DONE ONE A BETTER WAY
+		while(true)
+			updater.NextStep();
+		
+		
 
 	}
 	
