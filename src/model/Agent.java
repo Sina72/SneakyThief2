@@ -4,7 +4,7 @@ import model.commands.Coordinates;
 import model.commands.Move;
 
 public class Agent {
-	private boolean m_debug = false;
+	protected boolean m_debug = false;
 	
 	public Agent(Coordinates coord) {
 		// TODO Auto-generated constructor stub

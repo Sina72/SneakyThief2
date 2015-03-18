@@ -2,15 +2,27 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import model.commands.Coordinates;
+import model.commands.GridState;
 
 public class AgentIndex {
+	public AgentIndex(Map map)
+	{
+		m_map = map;
+	}
+	
 	public void AddGuard(Coordinates coord){
+		/* init the guard */
 		Guard guard = new Guard(coord);
 		guard.LoadSettingsXML("./settings/settings.xml");
 		ml_guards.add(guard);
+		
+		/* place the guard on the map */
+		if(m_map.getMap()[coord.getX()][coord.getY()] == GridState.Empty)
+			m_map.getMap()[coord.getX()][coord.getY()] = GridState.Guard;
+		else 
+			new Exception("This field is not empty");
 	}
 	
 	public List<Guard> getGuardList()
@@ -19,4 +31,5 @@ public class AgentIndex {
 	}
 	
 	private List<Guard> ml_guards = new ArrayList<Guard>();
+	private Map m_map;
 }

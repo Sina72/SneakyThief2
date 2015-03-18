@@ -8,7 +8,7 @@ public class GameMain {
 		Map map = new MapBuilder().buildDefaultMap();
 		if (map == null)
 			new Exception("the map is not generated correctly");
-		AgentIndex agentIndex = new AgentIndex();
+		AgentIndex agentIndex = new AgentIndex(map);
 		// TODO Auto-generated method stub
 
 	}
