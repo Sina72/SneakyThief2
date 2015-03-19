@@ -22,11 +22,13 @@ public class MoveAgents {
 		}
 	}
 	
-	private void CalcMove(Agent agent){
+	private Coordinates CalcMove(Agent agent){
 		Move move = agent.getMove();
 		Coordinates coords = agent.getCoordinates();
 		double distance = move.getSpeed()*Constants.STEP_LENGTH;
 		//TODO: calculate the new coordinates
+		double angle = (coords.getAngle() + move.getAngle()) % (2*Math.PI);
+		return null;
 	}
 	
 	private List<Guard> ml_guards;
