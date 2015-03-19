@@ -26,9 +26,9 @@ public class AgentIndex {
 	 * @param coord the coordinates where the guard should be placed
 	 */
 	
-	public void addAllGuards(ArrayList<Guard> guards){
-		for(Guard g:guards){
-			addGuard(g.getCoordinates());
+	public void addAllGuards(ArrayList<Coordinates> coords){
+		for(Coordinates c:coords){
+			addGuard(c);
 		}
 	}
 	public void addGuard(Coordinates coord){
