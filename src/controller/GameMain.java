@@ -22,11 +22,12 @@ public class GameMain {
 	 */
 	public static void main(String[] args) {
 		MapBuilder mapbuild = new MapBuilder();
-		Map gamemap = mapbuild.buildDefaultMap(0);
-		MainFrame frame = new MainFrame(gamemap);
+		Map gamemap = mapbuild.buildDefaultMap();
 		if (gamemap == null)
 			new Exception("the map is not generated correctly");
 		AgentIndex agentIndex = new AgentIndex(gamemap);
+		agentIndex.placeDefaultAgents();
+		MainFrame frame = new MainFrame(gamemap);
 		
 		/* add all initialistations before this point */
 		MoveAgents moveAgents = new MoveAgents(agentIndex.getGuardList());

@@ -1,5 +1,9 @@
+package controller;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import com.sun.prism.image.Coords;
 
 import model.Guard;
 import model.Map;
@@ -21,7 +25,17 @@ public class AgentIndex {
 		m_map = map;
 	}
 	
-
+	public void placeDefaultAgents(){
+		placeDefaultAgents(0);
+	}
+	public void placeDefaultAgents(int number){
+		ArrayList<Coordinates> coords = new ArrayList<Coordinates>();
+		switch (number){
+		case 0: coords.add(new Coordinates(5,5));
+				coords.add(new Coordinates(10,10));
+		}
+		addAllGuards(coords);
+	}
 	/**
 	 * Adds multiple guards at the same time by there coordinates
 	 * @param coords a list of coordinates
@@ -40,13 +54,14 @@ public class AgentIndex {
 		/* init the guard */
 		Guard guard = new Guard(coord);
 		guard.LoadSettingsXML("./settings/settings.xml");
-		ml_guards.add(guard);
 		
 		/* place the guard on the map */
-		if(m_map.getMap()[coord.getX()][coord.getY()] == GridState.Empty)
+		if(m_map.getMap()[coord.getX()][coord.getY()] == GridState.Empty){
 			m_map.getMap()[coord.getX()][coord.getY()] = GridState.Guard;
+			ml_guards.add(guard);
+		}
 		else 
-			new Exception("This field is not empty");
+			System.out.print("The agent can't be placed at "+ coord.getX() + ", " + coord.getY());
 	}
 	
 	public List<Guard> getGuardList()
