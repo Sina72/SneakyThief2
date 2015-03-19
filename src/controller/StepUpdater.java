@@ -36,6 +36,13 @@ public class StepUpdater{
 		m_moveAgents.DoMove();
 		m_stepNumber++;
 		//map panel redraw
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		frame.updateMap(map);
 	}
 	

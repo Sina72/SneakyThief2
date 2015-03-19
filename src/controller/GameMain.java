@@ -23,14 +23,16 @@ public class GameMain {
 	public static void main(String[] args) {
 		MapBuilder mapbuild = new MapBuilder();
 		Map gamemap = mapbuild.buildDefaultMap();
-		if (gamemap == null)
-			new Exception("the map is not generated correctly");
+		if (gamemap == null){
+			System.err.print("the map is not generated correctly");
+			return;
+		}
 		AgentIndex agentIndex = new AgentIndex(gamemap);
 		agentIndex.placeDefaultAgents();
 		MainFrame frame = new MainFrame(gamemap);
 		
 		/* add all initialistations before this point */
-		MoveAgents moveAgents = new MoveAgents(agentIndex.getGuardList());
+		MoveAgents moveAgents = new MoveAgents(agentIndex.getGuardList(), gamemap);
 		StepUpdater updater = new StepUpdater(moveAgents, frame);
 		
 		
