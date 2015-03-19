@@ -10,7 +10,9 @@ import model.Map;
 
 public class MainFrame extends JFrame {
 	
-	public MainFrame(){
+	private Map map;
+	public MainFrame(Map map){
+		this.map = map;
 		initFrame();
 	}
 
@@ -23,11 +25,10 @@ public class MainFrame extends JFrame {
 		//Create Panels
 		EditorPanel editPanel = new EditorPanel();
 		ControllerPanel controlPanel = new ControllerPanel();
-		Map map = new Map(200,200);
-		MapPanel mapPanel = new MapPanel(map);
+		MapPanel mapPanel = new MapPanel(this.map);
 		this.add(editPanel, BorderLayout.WEST);
 		this.add(controlPanel, BorderLayout.NORTH);
-		this.add(mapPanel,BorderLayout.EAST);
+		this.add(mapPanel,BorderLayout.CENTER);
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		this.setVisible(true);
 	}

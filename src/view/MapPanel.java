@@ -69,7 +69,7 @@ public class MapPanel extends JPanel implements Observer {
 
 		Graphics2D g2 = (Graphics2D) g;
 
-		GridState currentstate = null;
+		GridState currentstate;
 
 		// TODO: Get the map and the placements
 		// TODO: Finish draw methods
@@ -79,78 +79,57 @@ public class MapPanel extends JPanel implements Observer {
 			{	
 				currentstate = map.getMap()[i][j];
 				//CHANGE COLOR DEPENDING ON THE GRIDSTATE
-				switch(currentstate)
-				{
-					case Wall:
-					{
-						g2.setColor(Color.black);
-					}
-					case Guard:
-					{
-						g2.setColor(Color.green);
-					}
-					case Intruder:
-					{
-						g2.setColor(Color.red);
-					}
-					case Sentry:
-					{
-						g2.setColor(Color.blue);
-					}
-					case SentryGuard:
-					{
-						g2.setColor(Color.cyan);
-					}
-					case Shade:
-					{
-						g2.setColor(Color.gray);
-					}
-					case ShadeGuard:
-					{
-						g2.setColor(new Color(0,200,0));
-					}
-					case ShadeIntruder:
-					{
-						g2.setColor(new Color(200,0,0));
-					}
-					case Window:
-					{
-						g2.setColor(Color.yellow);
-					}
-					case Door:
-					{
-						g2.setColor(new Color(102,51,0));//Brown
-					}
-					case Target:
-					{
-						g2.setColor(Color.orange);
-					}
-					case TargetGuard:
-					{
-						g2.setColor(new Color(107,142,35));
-					}
-					case TargetIntruder:
-					{
-						g2.setColor(Color.magenta);
-					}
-					case Tree:
-					{
-						g2.setColor(new Color(128,128,0));
-					}
-					case OuterWall:
-					{
-						g2.setColor(Color.DARK_GRAY);
-					}
-					case Empty:
-					{
-						g2.setColor(Color.white);
-					}
-					
-				default:
-					break;
+				if(currentstate == GridState.Wall){
+						g2.setColor(Color.BLACK);
+				}
+				else if(currentstate == GridState.Guard){
+					g2.setColor(Color.green);
+				}
+				else if(currentstate == GridState.Intruder){
+					g2.setColor(Color.red);
+				}
+				else if(currentstate == GridState.Sentry){
+					g2.setColor(Color.blue);
+				}
+				else if(currentstate == GridState.SentryGuard){
+					g2.setColor(Color.cyan);
+				}
+				else if(currentstate == GridState.Shade){
+					g2.setColor(Color.gray);
+				}
+				else if(currentstate == GridState.ShadeGuard){
+					g2.setColor(new Color(0,200,0));
+				}
+				else if(currentstate == GridState.ShadeIntruder){
+					g2.setColor(new Color(200,0,0));
+				}
+				else if(currentstate == GridState.Window){
+					g2.setColor(Color.yellow);
+				}
+				else if(currentstate == GridState.Door){
+					g2.setColor(new Color(102,51,0));
+				}
+				else if(currentstate == GridState.Target){
+					g2.setColor(Color.orange);
+				}
+				else if(currentstate == GridState.TargetGuard){
+					g2.setColor(new Color(107,142,35));
+				}
+				else if(currentstate == GridState.TargetIntruder){
+					g2.setColor(Color.magenta);
+				}
+				else if(currentstate == GridState.Tree){
+					g2.setColor(new Color(128,128,0));
+				}
+				else if(currentstate == GridState.OuterWall){
+					g2.setColor(Color.DARK_GRAY);
+				}
+				else if(currentstate == GridState.Empty){
+					g2.setColor(Color.white);
 				}
 				
 				g2.drawRect(i*10, j*10, 5, 5);
+				g2.fill3DRect(i*10, j*10, 5, 5, false);
 				
 			}
 		}

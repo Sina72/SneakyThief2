@@ -25,9 +25,10 @@ public class MapBuilder {
 	{
 		 Map map = null;
 		switch(number){
-			case 0: map = new Map(200, 200);
+			case 0: map = new Map(20, 20);
 					map.getMap()[0][0] = GridState.OuterWall;
-					createWall(map,new Coordinates(5,1), new Coordinates(5,100));
+					createWall(map,new Coordinates(5,1), new Coordinates(5,15));
+					map.getMap()[5][10] = GridState.Guard;
 					break;
 			default: map = null;
 					break;
