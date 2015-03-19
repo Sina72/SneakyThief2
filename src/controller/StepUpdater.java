@@ -5,7 +5,6 @@ import java.util.Observable;
 import view.MainFrame;
 import view.MapPanel;
 import model.Map;
-import model.MoveAgents;
 
 /**
  * This class calls all the functions that have to be called when there is a new step

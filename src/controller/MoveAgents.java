@@ -1,7 +1,9 @@
-package model;
+package controller;
 
 import java.util.List;
 
+import model.Agent;
+import model.Constants;
 import model.Guard;
 import model.commands.Coordinates;
 import model.commands.Move;
