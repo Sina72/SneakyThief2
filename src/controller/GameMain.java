@@ -25,7 +25,7 @@ public class GameMain {
 		MainFrame frame = new MainFrame(gamemap);
 		if (gamemap == null)
 			new Exception("the map is not generated correctly");
-		AgentIndex agentIndex = new AgentIndex(map);
+		AgentIndex agentIndex = new AgentIndex(gamemap);
 		
 		/* add all initialistations before this point */
 		MoveAgents moveAgents = new MoveAgents(agentIndex.getGuardList());
