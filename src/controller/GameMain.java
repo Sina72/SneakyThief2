@@ -4,6 +4,7 @@ import view.MainFrame;
 import model.Agent;
 import model.Map;
 import model.commands.Move;
+
 import java.util.List;
 
 import model.*;
@@ -29,13 +30,13 @@ public class GameMain {
 		
 		/* add all initialistations before this point */
 		MoveAgents moveAgents = new MoveAgents(agentIndex.getGuardList());
-		StepUpdater updater = new StepUpdater(moveAgents);
+		StepUpdater updater = new StepUpdater(moveAgents, frame);
 		
 		
 		/*Run the steps */
 		
 		//TODO: THIS SHOULD BE DONE ONE A BETTER WAY
 		while(true)
-			updater.NextStep();
+			updater.NextStep(frame);
 	}
 }

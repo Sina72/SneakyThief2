@@ -25,7 +25,13 @@ public class AgentIndex {
 	 * Add a guard to the map
 	 * @param coord the coordinates where the guard should be placed
 	 */
-	public void AddGuard(Coordinates coord){
+	
+	public void addAllGuards(ArrayList<Guard> guards){
+		for(Guard g:guards){
+			addGuard(g.getCoordinates());
+		}
+	}
+	public void addGuard(Coordinates coord){
 		/* init the guard */
 		Guard guard = new Guard(coord);
 		guard.LoadSettingsXML("./settings/settings.xml");

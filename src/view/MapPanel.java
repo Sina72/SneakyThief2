@@ -24,6 +24,10 @@ public class MapPanel extends JPanel implements Observer {
 
 	// THIS PANEL PLACED ON THE RIGHT OF THE BORDER LAYOUT
 	private Map map;
+	
+	public Map getMap(){
+		return map;
+	}
 
 	private final static double PX_PER_M = 3779.527559055;
 

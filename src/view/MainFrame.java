@@ -48,4 +48,13 @@ public class MainFrame extends JFrame {
 	{
 		return panel.getValues();
 	}
+
+	public Map getMap() {
+		return map;
+	}
+	
+	public void updateMap(Map map){
+		this.map = map;
+		
+	}
 }
