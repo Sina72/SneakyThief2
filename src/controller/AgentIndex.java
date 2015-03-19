@@ -21,16 +21,21 @@ public class AgentIndex {
 		m_map = map;
 	}
 	
+
 	/**
-	 * Add a guard to the map
-	 * @param coord the coordinates where the guard should be placed
+	 * Adds multiple guards at the same time by there coordinates
+	 * @param coords a list of coordinates
 	 */
-	
 	public void addAllGuards(ArrayList<Coordinates> coords){
 		for(Coordinates c:coords){
 			addGuard(c);
 		}
 	}
+	
+	/**
+	 * Add a guard to the map
+	 * @param coord the coordinates where the guard should be placed
+	 */
 	public void addGuard(Coordinates coord){
 		/* init the guard */
 		Guard guard = new Guard(coord);
