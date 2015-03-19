@@ -26,6 +26,7 @@ public class MoveAgents {
 		Move move = agent.getMove();
 		Coordinates coords = agent.getCoordinates();
 		double distance = move.getSpeed()*Constants.STEP_LENGTH;
+		//TODO: calculate the new coordinates
 	}
 	
 	private List<Guard> ml_guards;

@@ -1,5 +1,10 @@
 package model.commands;
 
+/**
+ * This class functions as a container to store the coordinates
+ * @author Robert Stevens
+ *
+ */
 public class Coordinates {
 	public Coordinates(int x, int y)
 	{

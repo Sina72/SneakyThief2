@@ -3,17 +3,26 @@ package model;
 import model.commands.Coordinates;
 import model.commands.Move;
 
+/**
+ * The baseclass for both the guards and the intruders
+ * @author Robert Stevens
+ *
+ */
 public class Agent {
 	protected boolean m_debug = false;
 	
 	public Agent(Coordinates coord) {
-		// TODO Auto-generated constructor stub
-		coord = m_coords;
+		m_coords = coord;
 	}
 	
+	/**
+	 * This function is called once evry step and should return the move that the agent has to make
+	 * @return the move that the agent has to make
+	 */
 	public Move getMove()
 	{
-		return null;
+		//TODO: implement some better move here
+		return new Move(1.0, 0);
 	}
 	
 	/**

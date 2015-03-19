@@ -4,13 +4,28 @@ import model.Map;
 import model.commands.Coordinates;
 import model.commands.GridState;
 
+/**
+ * This Class holds the basic tools to build a new map and it also contains some default maps
+ * @author Robert Stevens
+ *
+ */
 public class MapBuilder {
 
+	/**
+	 * This function crates an random map 
+	 * @param width the width of the map
+	 * @param height the height of the map
+	 * @return a map
+	 */
 	public Map buildMap(int width, int height) {
+		//TODO: Implement this
 		return null;
 	}
 
-		//BuildMap
+	/**
+	 * This function returns a default map
+	 * @return a defailt map
+	 */
 	public Map buildDefaultMap()
 	{
 		return buildDefaultMap(0);
@@ -18,8 +33,8 @@ public class MapBuilder {
 	
 	/**
 	 * This function contains the default maps for now
-	 * @param number
-	 * @return
+	 * @param number the number of the default map you want
+	 * @return a map
 	 */
 	public Map buildDefaultMap(int number)
 	{
