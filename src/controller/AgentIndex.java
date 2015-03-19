@@ -1,8 +1,10 @@
-package model;
+package controller;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Guard;
+import model.Map;
 import model.commands.Coordinates;
 import model.commands.GridState;
 
