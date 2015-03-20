@@ -5,17 +5,26 @@ import java.util.TimerTask;
 
 /**
  * This class calls the stepUpdater when its needed
- * @author Robert Stevens
+ * @author Robert Stevens, Stan
  *
  */
 public class Scheduler {
+	/**
+	 * Init the class
+	 * @param updater the StepupDater
+	 */
 	public Scheduler(StepUpdater updater){
 		m_updater = updater;
 	}
+	
+	/**
+	 * Start the scheduler
+	 */
 	public void Start() {
-		schedule();
-		
+		schedule();	
 	}
+	
+	
 	private void schedule(){
 		timer = new Timer();
 		timer.scheduleAtFixedRate(
