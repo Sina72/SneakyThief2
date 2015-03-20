@@ -53,8 +53,8 @@ public class MainFrame extends JFrame {
 		return map;
 	}
 	
-	public void updateMap(Map map){
-		this.map = map;
+	public void updateMap(){
+		this.repaint();
 		
 	}
 }

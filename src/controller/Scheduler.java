@@ -25,7 +25,7 @@ public class Scheduler {
 					}
 				}, 
 				1, 
-				(long) (100));
+				(long) (1000));
 	}
 	private StepUpdater m_updater;
 	private Timer timer;

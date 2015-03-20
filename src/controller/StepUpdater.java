@@ -13,15 +13,9 @@ import model.Map;
  */
 public class StepUpdater{
 	
-	Map map;
-	
-	public Map getNewMap(){
-		return map;
-	}
 	
 	public StepUpdater(MoveAgents moveAgents, MainFrame frame)
 	{
-		this.map = frame.getMap();
 		setFrame(frame);
 		m_moveAgents = moveAgents;
 		
@@ -36,8 +30,9 @@ public class StepUpdater{
 	//TODO: add everything here that has to be updated
 		m_moveAgents.DoMove();
 		
+		
 		//map panel redraw
-		m_frame.updateMap(map);
+		m_frame.updateMap();
 		
 		m_stepNumber++;
 	}
