@@ -22,6 +22,7 @@ public class StepUpdater{
 	public StepUpdater(MoveAgents moveAgents, MainFrame frame)
 	{
 		this.map = frame.getMap();
+		setFrame(frame);
 		m_moveAgents = moveAgents;
 		
 		//TODO: Do things to the map
@@ -30,25 +31,25 @@ public class StepUpdater{
 	/**
 	 * Call all the functions that have to be called to generate the next step
 	 */
-	public void NextStep(MainFrame frame)
+	public void NextStep()
 	{
 	//TODO: add everything here that has to be updated
 		m_moveAgents.DoMove();
-		m_stepNumber++;
-		//map panel redraw
 		
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		frame.updateMap(map);
+		//map panel redraw
+		m_frame.updateMap(map);
+		
+		m_stepNumber++;
 	}
 	
 	public int getStepNumber(){
 		return m_stepNumber;
 	}
+	
+	public void setFrame(MainFrame frame){
+		m_frame = frame;
+	}
+	private MainFrame m_frame;
 	private MoveAgents m_moveAgents;
 	private int m_stepNumber;
 }

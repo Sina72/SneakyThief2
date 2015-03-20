@@ -6,6 +6,8 @@ import model.Map;
 import model.commands.Move;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import model.*;
 /**
@@ -39,7 +41,9 @@ public class GameMain {
 		/*Run the steps */
 		
 		//TODO: THIS SHOULD BE DONE ONE A BETTER WAY
-		while(true)
-			updater.NextStep(frame);
+		//while(true)
+			//updater.NextStep(frame);
+		new Scheduler(updater).Start();
 	}
 }
+
