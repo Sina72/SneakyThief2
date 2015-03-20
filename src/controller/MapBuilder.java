@@ -28,7 +28,7 @@ public class MapBuilder {
 	 */
 	public Map buildDefaultMap()
 	{
-		return buildDefaultMap(0);
+		return buildDefaultMap(1);
 	}
 	
 	/**
@@ -42,23 +42,21 @@ public class MapBuilder {
 		switch(number){
 
 			case 0: map = new Map(200, 200);
-				
-					map.getMap()[0][0] = GridState.OuterWall;
 					createWall(map,new Coordinates(5,1), new Coordinates(5,100));
 					break;
 			case 1: map = new Map(200, 200);
 					for(int j = 0; j < 15; j++){
-						int startx = (int)Math.random()*200;
-						int starty = (int)Math.random()*200;
-						for(int i = 0; i < 5; i++){
-							if(map.getMap()[startx+i][starty] != GridState.Empty){	
+						int startx = (int)(Math.random()*189.0);
+						int starty = (int)(Math.random()*189.0);
+						for(int i = 0; i < 10; i++){
+							if(map.getMap()[startx+i][starty] == GridState.Empty){	
 								map.getMap()[startx+i][starty] = GridState.Wall;
 							}
 						}
-						startx = (int)Math.random()*200;
-						starty = (int)Math.random()*200;
-						for(int i = 0; i < 5; i++){
-							if(map.getMap()[startx][starty+i] != GridState.Empty){	
+						startx = (int)(Math.random()*189.0);
+						starty = (int)(Math.random()*189.0);
+						for(int i = 0; i < 10; i++){
+							if(map.getMap()[startx][starty+i] == GridState.Empty){	
 								map.getMap()[startx][starty+i] = GridState.Wall;
 							}
 						}
