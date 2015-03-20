@@ -61,7 +61,7 @@ public class AgentIndex {
 			ml_guards.add(guard);
 		}
 		else 
-			System.out.print("The agent can't be placed at "+ coord.getX() + ", " + coord.getY());
+			System.err.println("The agent can't be placed at "+ coord.getX() + ", " + coord.getY());
 	}
 	
 	public List<Guard> getGuardList()

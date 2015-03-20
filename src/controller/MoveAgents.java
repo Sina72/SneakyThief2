@@ -11,6 +11,7 @@ import model.commands.GridState;
 import model.commands.Move;
 
 public class MoveAgents {
+	private boolean m_debug = true;
 	public MoveAgents(List<Guard> guards, Map map)
 	{
 		ml_guards = guards;
@@ -35,7 +36,13 @@ public class MoveAgents {
 		//TODO: calculate the new coordinates
 		double angle = (coords.getAngle() + move.getAngle()) % (2*Math.PI);
 		
-		coords.setCoordinates(coords.getX()-1, coords.getY(), coords.getAngle());
+		coords.setCoordinates(coords.getX()+1, coords.getY(), coords.getAngle());
+		
+		if(m_debug) System.out.println("");
+		if(m_debug) System.out.println("Base Coords " + agent.getCoordinates().getX() + ", " + agent.getCoordinates().getY() + ", " + agent.getCoordinates().getAngle());
+		if(m_debug) System.out.println("angle " + angle + ", distence "+ distance);
+		if(m_debug) System.out.println("New Coords " + coords.getX() + ", " + coords.getY() + ", " + coords.getAngle());
+		
 		return coords;
 		//return null;
 	}
