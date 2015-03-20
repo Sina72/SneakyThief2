@@ -24,7 +24,7 @@ public class MapBuilder {
 
 	/**
 	 * This function returns a default map
-	 * @return a defailt map
+	 * @return a default map
 	 */
 	public Map buildDefaultMap()
 	{
@@ -68,6 +68,8 @@ public class MapBuilder {
 		}
 		return map;
 	}
+	
+	
 	
 	/**
 	 * This function can create walls
