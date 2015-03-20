@@ -35,7 +35,7 @@ public class MoveAgents {
 		//TODO: calculate the new coordinates
 		double angle = (coords.getAngle() + move.getAngle()) % (2*Math.PI);
 		
-		coords.setCoordinates(coords.getX()+1, coords.getY(), coords.getAngle());
+		coords.setCoordinates(coords.getX()-1, coords.getY(), coords.getAngle());
 		return coords;
 		//return null;
 	}
@@ -43,9 +43,12 @@ public class MoveAgents {
 	
 	private void ExecMove(Agent agent, Coordinates newcoords) {
 		//TODO: this function should be rewritten it doesn't check anything and it frees up the fields instead of returning them to there original state
-		m_map.getMap()[agent.getCoordinates().getX()][agent.getCoordinates().getY()] = GridState.Empty;
-		agent.getCoordinates().setCoordinates(newcoords.getX(), newcoords.getY(), newcoords.getAngle());
-		m_map.getMap()[agent.getCoordinates().getX()][agent.getCoordinates().getY()] = GridState.Guard;
+		if (m_map.getMap()[newcoords.getX()][newcoords.getY()] == GridState.Empty){
+			m_map.getMap()[agent.getCoordinates().getX()][agent.getCoordinates().getY()] = GridState.Empty;
+			agent.getCoordinates().setCoordinates(newcoords.getX(), newcoords.getY(), newcoords.getAngle());
+			m_map.getMap()[agent.getCoordinates().getX()][agent.getCoordinates().getY()] = GridState.Guard;
+		}
+		
 		
 	}
 	
