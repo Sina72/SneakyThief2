@@ -118,23 +118,10 @@ public class MoveAgents {
 	 */
 	private void freePosition(Coordinates coords){
 		GridState state = m_map.getMap()[coords.getX()][coords.getY()];
-		GridState newState = GridState.Empty;
+		GridState newState = state.stateWhenFreed();
 
-		//TODO: add all other relevant cases
-		switch (state){
-		case Empty: System.err.println("you cant empty an empty spot");
-		break;
-		case Guard:
-		case Intruder: newState = GridState.Empty;
-		break;
-		case TargetGuard:
-		case TargetIntruder: newState = GridState.Target;
-		break;
-		case SentryGuard: newState = GridState.Sentry;
-		break;
-		default: System.err.println("The input for freePosition is incorrect");
-		break;
-		}
+		if(newState == null)
+			System.err.println("Cannot free an empty GridState");
 
 		m_map.getMap()[coords.getX()][coords.getY()] = newState;
 	}

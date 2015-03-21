@@ -8,29 +8,30 @@ import java.awt.Color;
  *
  */
 public enum GridState {
-	//					Color					Moveable
-	Empty			(	Color.WHITE, 			true		),
-	Guard			(	Color.GREEN, 			false		),
-	Intruder		(	Color.RED,				false		),
-	Wall			(	Color.BLACK, 			false		),
-	Sentry			(	Color.BLUE,				false		),
-	SentryGuard		(	Color.CYAN,				false		),
-	Shade 			(	Color.GRAY,				true		),
-	ShadeGuard 		(	new Color(0,200,0),		false		),
-	ShadeIntruder 	(	new Color(200,0,0),		false		),
-	Window			(	Color.YELLOW,			false		),
-	Door			(	new Color(102,51,0),	false		),
-	Target			(	Color.ORANGE,			true		),
-	TargetIntruder	(	Color.MAGENTA,			false		),
-	TargetGuard		(	new Color(107,142,35),	false		),
-	Tree			(	new Color(128,128,0),	false		),
-	OuterWall		(	Color.DARK_GRAY,		false		);
+	//					Color					Moveable		state when Freed
+	Empty			(	Color.WHITE, 			true,			null),
+	Guard			(	Color.GREEN, 			false,			Empty),
+	Intruder		(	Color.RED,				false,			Empty),
+	Wall			(	Color.BLACK, 			false,			Empty),
+	Sentry			(	Color.BLUE,				false,			Empty),
+	SentryGuard		(	Color.CYAN,				false,			Sentry),
+	Shade 			(	Color.GRAY,				true,			Empty),
+	ShadeGuard 		(	new Color(0,200,0),		false,			Shade),
+	ShadeIntruder 	(	new Color(200,0,0),		false,			Shade),
+	Window			(	Color.YELLOW,			false,			Empty),
+	Door			(	new Color(102,51,0),	false,			Empty),
+	Target			(	Color.ORANGE,			true,			Empty),
+	TargetIntruder	(	Color.MAGENTA,			false,			Target),
+	TargetGuard		(	new Color(107,142,35),	false,			Target),
+	Tree			(	new Color(128,128,0),	false,			Empty),
+	OuterWall		(	Color.DARK_GRAY,		false,			null);
 
 
 
-	GridState(Color color, boolean moveable){
+	GridState(Color color, boolean moveable, GridState freedState){
 		this.color = color;
 		m_moveable = moveable;
+		m_freedState = freedState;
 	}
 
 	public Color color(){
@@ -41,6 +42,11 @@ public enum GridState {
 		return m_moveable;
 	}
 
+	public GridState stateWhenFreed(){
+		return m_freedState;
+	}
+
 	Color color;
 	private boolean m_moveable;
+	private GridState m_freedState;
 }
