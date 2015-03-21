@@ -26,6 +26,9 @@ public class Coordinates {
 		this.y = y;
 		this.angle = angle;
 	}
+	public void setAngle(double angle){
+		this.angle = angle;
+	}
 	public int getX(){
 		return this.x;
 	}

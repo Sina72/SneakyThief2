@@ -34,5 +34,4 @@ public enum GridState {
 	public Color color(){
 		return color;
 	}
-	
-	}
+}

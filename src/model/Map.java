@@ -7,6 +7,7 @@ import model.commands.*;
  *
  */
 public class Map {
+	
 	/**
 	 * Create a map initualise it with empty spots, except from the border this is initalised with the outerwall
 	 * @param width the width of the map
