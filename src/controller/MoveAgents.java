@@ -1,5 +1,8 @@
 package controller;
 
+import static java.lang.Math.cos;
+import static java.lang.Math.sin;
+
 import java.util.List;
 
 import model.Agent;
@@ -40,14 +43,13 @@ public class MoveAgents {
 
 		double angle = (coords.getAngle() + move.getAngle()) % (2*Math.PI);
 
-		int x = coords.getX() + move.right(angle);
-		int y = coords.getY() + move.top(angle);
+		int x = coords.getX() + Map.metersToGridStates(cos(angle) * distance);
+		int y = coords.getY() + Map.metersToGridStates(sin(angle) * distance);
 
 		if(m_debug){
-			System.out.println("Relative move right: " + move.right(angle));
-			System.out.println("Relative move top: " + move.top(angle));
 			System.out.println("new x: " + x);
 			System.out.println("new y: " + y);
+			System.out.println("angle y: " + angle);
 		}
 
 		coords.setCoordinates(x, y, angle);

@@ -33,6 +33,8 @@ public class AgentIndex {
 		switch (number){
 		case 0: coords.add(new Coordinates(5,5));
 				coords.add(new Coordinates(10,10));
+				coords.add(new Coordinates(20,20));
+				coords.add(new Coordinates(30,30));
 		}
 		addAllGuards(coords);
 	}
