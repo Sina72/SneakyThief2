@@ -31,14 +31,11 @@ public class Map {
 	 */
 	public Map (int width, int height)
 	{
-		m_width = width;
-		m_height = height;
-		
 		/*	initialize map with outer wall 	*/
-		theMap = new GridState[m_width][m_height];
-		for (int i = 0; i < m_height; i++)
-			for (int j = 0; j <m_width; j++)
-				if (i == 0 || i == m_height-1 || j == 0 || j == m_width-1)
+		theMap = new GridState[width][height];
+		for (int i = 0; i < height; i++)
+			for (int j = 0; j < width; j++)
+				if (i == 0 || i == height-1 || j == 0 || j == width-1)
 					theMap[i][j] = GridState.OuterWall;
 				else
 					theMap[i][j] = GridState.Empty;
@@ -98,10 +95,15 @@ public class Map {
 		return theMap;
 	}
 	
+	public int width(){
+		return theMap.length;
+	}
+	
+	public int height(){
+		return theMap[0].length;
+	}
+	
 	/*	Instance Variables	*/
 	private GridState[][] theMap;
-	//Width in amount of gridstates
-	private int m_width;
-	private int m_height;
 
 }
