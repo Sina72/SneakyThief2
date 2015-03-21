@@ -11,7 +11,7 @@ import model.commands.GridState;
 import model.commands.Move;
 
 public class MoveAgents {
-	private boolean m_debug = false;
+	private boolean m_debug = true;
 	public MoveAgents(List<Guard> guards, Map map)
 	{
 		ml_guards = guards;
@@ -39,6 +39,7 @@ public class MoveAgents {
 
 		int x = coords.getX() + move.right();
 		int y = coords.getY() + move.top();
+
 
 		coords.setCoordinates(x, y, angle);
 
