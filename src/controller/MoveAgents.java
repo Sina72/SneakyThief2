@@ -37,14 +37,46 @@ public class MoveAgents {
 
 		double angle = (coords.getAngle() + move.getAngle()) % (2*Math.PI);
 
-		int x = coords.getX() + move.right();
-		int y = coords.getY() + move.top();
+		int x = coords.getX();
+		int y = coords.getY();
+
+		if (angle >= 0.0 && angle < 0.125*Math.PI) // right
+			x += tiles;
+		else if (angle < 0.375*Math.PI){ // right top
+			x += tiles;
+			y += tiles;
+		}
+		else if (angle < 0.625*Math.PI) //top
+			y += tiles;
+		else if (angle < 0.875*Math.PI){ // left top
+			x -= tiles;
+			y += tiles;
+		}
+		else if (angle < 1.125*Math.PI) //left
+			x -= tiles;
+		else if (angle < 1.375*Math.PI){ // left bottom
+			x -= tiles;
+			y -= tiles;
+		}
+		else if (angle < 0.625*Math.PI) //bottom
+			y -= tiles;
+		else if (angle < 0.875*Math.PI){ // right bottom
+			x += tiles;
+			y -= tiles;
+		}
+		else
+			x += tiles; // the rest of right
+
 
 		coords.setCoordinates(x, y, angle);
 
-		if(m_debug) reportMove(agent, distance, tiles, coords, angle);
+		if(m_debug) System.out.println("");
+		if(m_debug) System.out.println("Base Coords " + agent.getCoordinates().getX() + ", " + agent.getCoordinates().getY() + ", " + agent.getCoordinates().getAngle());
+		if(m_debug) System.out.println("angle " + angle + ", distence "+ distance + " tiles " + tiles);
+		if(m_debug) System.out.println("New Coords " + coords.getX() + ", " + coords.getY() + ", " + coords.getAngle());
 
 		return coords;
+		//return null;
 	}
 
 	private void reportMove(Agent agent, double distance, int tiles, Coordinates coords, double angle){
