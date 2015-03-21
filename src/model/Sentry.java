@@ -9,7 +9,5 @@ public class Sentry extends Guard{
 		super(coord);
 		// TODO Auto-generated constructor stub
 	}
-	
-	
 
 }

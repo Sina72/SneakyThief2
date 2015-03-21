@@ -11,12 +11,13 @@ import javax.swing.JPanel;
 
 /**
  * Panel with user controls
- * 
+ *
  * @author Stan
  *
  */
+@SuppressWarnings("serial")
 public class ControllerPanel extends JPanel {
-	
+
 	public ControllerPanel()
 	{
 		//CREATE ELEMENTS
@@ -24,7 +25,7 @@ public class ControllerPanel extends JPanel {
 		JButton startgame = new JButton("Begin Simulation");
 		JButton pausegame = new JButton("Pause Simulation");
 		JButton stopgame = new JButton("Stop Simulation");
-		
+
 		//ADD LISTENERS
 		startgame.addActionListener(new ActionListener(){
 			@Override
@@ -35,21 +36,21 @@ public class ControllerPanel extends JPanel {
 				// Stan
 			}
 		});
-		
+
 		pausegame.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
 				// TODO: pauze game
 			}
 		});
-		
+
 		stopgame.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
 				// TODO: stop game
 			}
 		});
-		
+
 		//ADD ELEMENTS
 		this.setLayout(controllerlayout);
 		this.add(startgame);
@@ -66,34 +67,34 @@ class StartListener implements MouseListener
 		//TODO: GIVE ALL INFORMATION FROM EDITOR PANEL TO MAP
 		//TODO: BUILD MAP
 		//TODO: RUN THE GAME
-		
+
 	}
 
 	//DONT NEED THESE
 	@Override
 	public void mouseEntered(MouseEvent event) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent event) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mousePressed(MouseEvent event) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent event) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 }
 
 class PauseListener implements MouseListener
@@ -102,31 +103,31 @@ class PauseListener implements MouseListener
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 }

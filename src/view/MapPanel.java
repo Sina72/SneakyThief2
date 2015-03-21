@@ -16,6 +16,7 @@ import model.commands.GridState;
 /**
  * Draws a map on a JPanel
  */
+@SuppressWarnings("serial")
 public class MapPanel extends JPanel implements Observer {
 
 	// THIS PANEL PLACED IN THE CENTER OF THE BORDER LAYOUT

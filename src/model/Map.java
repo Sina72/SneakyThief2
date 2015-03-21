@@ -1,5 +1,5 @@
 package model;
-import model.commands.*;
+import model.commands.GridState;
 
 /**
  * This class creates and contains a map
@@ -7,11 +7,11 @@ import model.commands.*;
  *
  */
 public class Map {
-	
+
 	/* Constants */
-	private static final int GRIDSTATES_PER_METER = 1;
-	
-	
+	public static final int GRIDSTATES_PER_METER = 1;
+
+
 	/*		Constructors	 */
 	/**
 	 * Constructor taking an amount of meters.
@@ -22,9 +22,9 @@ public class Map {
 		this(	metersToGridStates(width),
 				metersToGridStates(height));
 	}
-	
+
 	/**
-	 * Create a map initualise it with empty spots, except from the border this is initalised with the outerwall. 
+	 * Create a map initualise it with empty spots, except from the border this is initalised with the outerwall.
 	 * Constructor takes an amount of gridstates
 	 * @param width the width of the map
 	 * @param height the height of the map
@@ -40,9 +40,9 @@ public class Map {
 				else
 					theMap[i][j] = GridState.Empty;
 	}
-	
+
 	/*	 Conversion Methods		*/
-	
+
 	/**
 	 * Convenience method for converting any amount of meter values to an array of gridState amounts.
 	 * Calls the metersToGridstates method on every value
@@ -55,18 +55,18 @@ public class Map {
 			gridStates[i] = metersToGridStates(meters[i]);
 		return gridStates;
 	}
-	
+
 	/**
 	 * Converts an amount of meters to an amount of gridStates. Amount of gridStates per meter is {@value #GRIDSTATES_PER_METER}.
-	 * 
+	 *
 	 * This method will round down on the amount of gridStates, e.g. 2.99 gridStates will be truncated to 2 gridStates
 	 * @param meters
 	 * @return
 	 */
 	public static int metersToGridStates(double meters){
-		return (int) (meters * GRIDSTATES_PER_METER);
+		return (int) (meters / Constants.CELL_SIZE);
 	}
-	
+
 	/**
 	 * Convenience method for converting any amount of gridState amounts to an array of meter values
 	 * @param Gridstates amount of gridStates
@@ -78,7 +78,7 @@ public class Map {
 			meters[i] = gridStatesToMeters(gridStates[i]);
 		return meters;
 	}
-	
+
 	/**
 	 * Converts an amount of gridStates to a meter value. Although the meter is a double, one should pay attention that the amount of
 	 * gridStates is discretised.
@@ -86,23 +86,23 @@ public class Map {
 	 * @return
 	 */
 	public static double gridStatesToMeters(int gridstates){
-		return gridstates / GRIDSTATES_PER_METER;
+		return gridstates * Constants.CELL_SIZE;
 	}
-	
+
 	/*	Getters/Setters */
-	
+
 	public GridState[][] getMap(){
 		return theMap;
 	}
-	
+
 	public int width(){
 		return theMap.length;
 	}
-	
+
 	public int height(){
 		return theMap[0].length;
 	}
-	
+
 	/*	Instance Variables	*/
 	private GridState[][] theMap;
 

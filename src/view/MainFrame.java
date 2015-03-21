@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import model.Map;
 
 
+@SuppressWarnings("serial")
 public class MainFrame extends JFrame {
 	
 	private Map map;
@@ -23,12 +24,12 @@ public class MainFrame extends JFrame {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		//Create Panels
-		//EditorPanel editPanel = new EditorPanel();
+		EditorPanel editPanel = new EditorPanel();
 		ControllerPanel controlPanel = new ControllerPanel();
 		MapPanel mapPanel = new MapPanel(this.map);
 		BlockPanel blockPanel = new BlockPanel();
 		
-		//this.add(editPanel, BorderLayout.WEST);
+		this.add(editPanel, BorderLayout.WEST);
 		this.add(controlPanel, BorderLayout.NORTH);
 		this.add(mapPanel,BorderLayout.CENTER);
 		this.add(blockPanel, BorderLayout.EAST);

@@ -15,6 +15,7 @@ import javax.swing.JTextField;
  * @author Stan
  *
  */
+@SuppressWarnings("serial")
 public class EditorPanel extends JPanel 
 {
 	//OUR MENU OPTIONS	
