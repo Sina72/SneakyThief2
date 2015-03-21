@@ -10,7 +10,7 @@ import model.Map;
 
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame {
-	
+
 	private Map map;
 	public MainFrame(Map map){
 		this.map = map;
@@ -19,30 +19,30 @@ public class MainFrame extends JFrame {
 
 	private void initFrame() {
 		//TODO: Color legend
-		this.setLayout(new BorderLayout());
+		setLayout(new BorderLayout());
 		setSize(700,500);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		//Create Panels
-		EditorPanel editPanel = new EditorPanel();
+		//EditorPanel editPanel = new EditorPanel();
 		ControllerPanel controlPanel = new ControllerPanel();
-		MapPanel mapPanel = new MapPanel(this.map);
+		MapPanel mapPanel = new MapPanel(map);
 		BlockPanel blockPanel = new BlockPanel();
-		
-		this.add(editPanel, BorderLayout.WEST);
+
+		//this.add(editPanel, BorderLayout.WEST);
 		this.add(controlPanel, BorderLayout.NORTH);
 		this.add(mapPanel,BorderLayout.CENTER);
 		this.add(blockPanel, BorderLayout.EAST);
-		this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
-		this.setVisible(true);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setVisible(true);
 	}
-	
+
 //	public void connectGameController(GameController controller){
 //		MapPanel mapPanel = new MapPanel(controller.getMap());
 //		controller.addObserver(mapPanel);
 //		this.add(mapPanel, BorderLayout.CENTER);
 //	}
-	
+
 	/**
 	 * Get the input values from the editor panel
 	 * @param panel
@@ -56,9 +56,9 @@ public class MainFrame extends JFrame {
 	public Map getMap() {
 		return map;
 	}
-	
+
 	public void updateMap(){
 		this.repaint();
-		
+
 	}
 }
