@@ -31,7 +31,10 @@ public class MoveAgents {
 
 	private Coordinates CalcMove(Agent agent){
 		Move move = agent.getMove();
-		Coordinates coords = new Coordinates(agent.getCoordinates().getX(),agent.getCoordinates().getY(),agent.getCoordinates().getAngle());
+		Coordinates coords = new Coordinates(
+				agent.getCoordinates().getX(),
+				agent.getCoordinates().getY(),
+				agent.getCoordinates().getAngle());
 		double distance = move.getSpeed()*Constants.STEP_LENGTH;
 		int tiles = (int)(float)(distance/Constants.CELL_SIZE);
 
@@ -39,7 +42,6 @@ public class MoveAgents {
 
 		int x = coords.getX() + move.right();
 		int y = coords.getY() + move.top();
-
 
 		coords.setCoordinates(x, y, angle);
 
@@ -51,7 +53,7 @@ public class MoveAgents {
 	private void reportMove(Agent agent, double distance, int tiles, Coordinates coords, double angle){
 		System.out.println("");
 		System.out.println("Base Coords " + agent.getCoordinates().getX() + ", " + agent.getCoordinates().getY() + ", " + agent.getCoordinates().getAngle());
-		System.out.println("angle " + angle + ", distence "+ distance + " tiles " + tiles);
+		System.out.println("angle " + angle + ", distance "+ distance + " tiles " + tiles);
 		System.out.println("New Coords " + coords.getX() + ", " + coords.getY() + ", " + coords.getAngle());
 	}
 
@@ -61,14 +63,10 @@ public class MoveAgents {
 	 * @param newcoords The new position
 	 */
 	private void ExecMove(Agent agent, Coordinates newcoords) {
-		/* check if the agent moved to a other position or ownly turned */
-		if (agent.getCoordinates().getX() == newcoords.getX() && agent.getCoordinates().getY() == newcoords.getY()){
-			agent.getCoordinates().setAngle(newcoords.getAngle());
-			return;
-		}
+		agent.getCoordinates().setAngle(newcoords.getAngle());
 
 		/* if the agent also moved to a other position move him there */
-		if (isPositionFree(newcoords) && setPosition(agent, newcoords)){
+		if (isPathFree(agent.getCoordinates(), newcoords) && setPosition(agent, newcoords)){
 			freePosition(agent.getCoordinates());
 			agent.getCoordinates().setCoordinates(newcoords.getX(), newcoords.getY(), newcoords.getAngle());
 		}
@@ -86,6 +84,24 @@ public class MoveAgents {
 		if (state == GridState.Empty || state == GridState.Sentry || state == GridState.Shade)
 			return true;
 		return false;
+	}
+
+
+	private boolean isPathFree(Coordinates begin, Coordinates end){
+
+		int xtrack = begin.getX(), ytrack = begin.getY();
+
+		int xdir = Integer.signum(end.getX() - begin.getX()),		//X move direction
+				ydir =	Integer.signum(end.getY() - begin.getY());	//Y move direction
+
+		while(xtrack != end.getX() || ytrack != end.getY()){
+			if(xtrack != end.getX()) xtrack += xdir;
+			if(ytrack != end.getY()) xtrack += ydir;
+			if(isPositionFree(new Coordinates(xtrack, ytrack)))
+				return false;
+		}
+
+		return true;
 	}
 
 	/**
@@ -122,7 +138,7 @@ public class MoveAgents {
 	 * @return true on success else false
 	 */
 	private boolean setPosition(Agent agent, Coordinates coords){
-		boolean isGuard = true; //TODO: get this from the agent
+		boolean isGuard = agent instanceof Guard;
 		GridState state = m_map.getMap()[coords.getX()][coords.getY()];
 		GridState newState = GridState.Empty;
 

@@ -10,7 +10,7 @@ public class Coordinates {
 	{
 		setCoordinates(x, y);
 	}
-	
+
 	public Coordinates(int x, int y, double angle)
 	{
 		setCoordinates(x, y, angle);
@@ -35,12 +35,22 @@ public class Coordinates {
 	public int getY(){
 		return this.y;
 	}
-	
+
+	public void addPos(Coordinates c){
+		this.x += c.x;
+		this.y += c.y;
+	}
+
+	public void add(Coordinates c){
+		addPos(c);
+		this.angle += c.angle;
+	}
+
 	public double getAngle()
 	{
 		return this.angle;
 	}
-	
+
 	private int x;
 	private int y;
 	private double angle;
