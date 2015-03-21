@@ -43,6 +43,13 @@ public class MoveAgents {
 		int x = coords.getX() + move.right();
 		int y = coords.getY() + move.top();
 
+		if(m_debug){
+			System.out.println("Relative move right: " + move.right());
+			System.out.println("Relative move top: " + move.top());
+			System.out.println("new x: " + x);
+			System.out.println("new y: " + y);
+		}
+
 		coords.setCoordinates(x, y, angle);
 
 		if(m_debug) reportMove(agent, distance, tiles, coords, angle);
@@ -66,9 +73,14 @@ public class MoveAgents {
 		agent.getCoordinates().setAngle(newcoords.getAngle());
 
 		/* if the agent also moved to a other position move him there */
-		if (isPathFree(agent.getCoordinates(), newcoords) && setPosition(agent, newcoords)){
+		if (isPathFree(agent.getCoordinates(), newcoords)
+				&&
+				setPosition(agent, newcoords)){
 			freePosition(agent.getCoordinates());
-			agent.getCoordinates().setCoordinates(newcoords.getX(), newcoords.getY(), newcoords.getAngle());
+			agent.getCoordinates().setCoordinates(
+					newcoords.getX(),
+					newcoords.getY(),
+					newcoords.getAngle());
 		}
 	}
 
@@ -92,8 +104,8 @@ public class MoveAgents {
 
 		while(xtrack != end.getX() || ytrack != end.getY()){
 			if(xtrack != end.getX()) xtrack += xdir;
-			if(ytrack != end.getY()) xtrack += ydir;
-			if(isPositionFree(new Coordinates(xtrack, ytrack)))
+			if(ytrack != end.getY()) ytrack += ydir;
+			if(!isPositionFree(new Coordinates(xtrack, ytrack)))
 				return false;
 		}
 

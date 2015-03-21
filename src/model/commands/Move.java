@@ -30,7 +30,6 @@ public class Move {
 	}
 
 	public int right(){
-		System.out.println(m_speed + ", " + m_time + ", " + m_angle);
 		return Map.metersToGridStates(cos(m_angle) * m_speed * m_time);
 	}
 
