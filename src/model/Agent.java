@@ -22,7 +22,7 @@ public class Agent {
 	public Move getMove()
 	{
 		//TODO: implement some better move here
-		return new Move(1.0, 0);
+		return new Move(1.0, 1.9*Math.PI);
 	}
 	
 	/**

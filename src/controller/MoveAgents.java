@@ -33,14 +33,46 @@ public class MoveAgents {
 		Move move = agent.getMove();
 		Coordinates coords = new Coordinates(agent.getCoordinates().getX(),agent.getCoordinates().getY(),agent.getCoordinates().getAngle());
 		double distance = move.getSpeed()*Constants.STEP_LENGTH;
-		//TODO: calculate the new coordinates
+		int tiles = (int)((float)(distance/Constants.CELL_SIZE));
+
 		double angle = (coords.getAngle() + move.getAngle()) % (2*Math.PI);
 		
-		coords.setCoordinates(coords.getX()+1, coords.getY(), coords.getAngle());
+		int x = coords.getX();
+		int y = coords.getY();
+		
+		if (angle >= 0.0 && angle < 0.125*Math.PI) // right
+			x += tiles;
+		else if (angle < 0.375*Math.PI){ // right top
+			x += tiles;
+			y += tiles;
+		}
+		else if (angle < 0.625*Math.PI) //top
+			y += tiles;
+		else if (angle < 0.875*Math.PI){ // left top
+			x -= tiles;
+			y += tiles;
+		}
+		else if (angle < 1.125*Math.PI) //left
+			x -= tiles;
+		else if (angle < 1.375*Math.PI){ // left bottom
+			x -= tiles;
+			y -= tiles;
+		}
+		else if (angle < 0.625*Math.PI) //bottom
+			y -= tiles;
+		else if (angle < 0.875*Math.PI){ // right bottom
+			x += tiles;
+			y -= tiles;
+		}
+		else 
+			x += tiles; // the rest of right
+
+		
+		coords.setCoordinates(x, y, angle);
 		
 		if(m_debug) System.out.println("");
 		if(m_debug) System.out.println("Base Coords " + agent.getCoordinates().getX() + ", " + agent.getCoordinates().getY() + ", " + agent.getCoordinates().getAngle());
-		if(m_debug) System.out.println("angle " + angle + ", distence "+ distance);
+		if(m_debug) System.out.println("angle " + angle + ", distence "+ distance + " tiles " + tiles);
 		if(m_debug) System.out.println("New Coords " + coords.getX() + ", " + coords.getY() + ", " + coords.getAngle());
 		
 		return coords;
@@ -54,12 +86,17 @@ public class MoveAgents {
 	 * @param newcoords The new position
 	 */
 	private void ExecMove(Agent agent, Coordinates newcoords) {
+		/* check if the agent moved to a other position or ownly turned */
+		if (agent.getCoordinates().getX() == newcoords.getX() && agent.getCoordinates().getY() == newcoords.getY()){
+			agent.getCoordinates().setAngle(newcoords.getAngle());
+			return;
+		}
+		
+		/* if the agent also moved to a other position move him there */
 		if (isPositionFree(newcoords) && setPosition(agent, newcoords)){
 			freePosition(agent.getCoordinates());
 			agent.getCoordinates().setCoordinates(newcoords.getX(), newcoords.getY(), newcoords.getAngle());
 		}
-		
-		
 	}
 	
 	/**
