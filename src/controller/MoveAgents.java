@@ -79,11 +79,7 @@ public class MoveAgents {
 	 */
 	private boolean isPositionFree(Coordinates coords){
 		GridState state = m_map.getMap()[coords.getX()][coords.getY()];
-
-		//TODO: add all options witch apply here
-		if (state == GridState.Empty || state == GridState.Sentry || state == GridState.Shade)
-			return true;
-		return false;
+		return state.moveable();
 	}
 
 

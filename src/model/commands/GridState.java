@@ -8,30 +8,39 @@ import java.awt.Color;
  *
  */
 public enum GridState {
-	Empty			(Color.WHITE),
-	Guard			(Color.GREEN),
-	Intruder		(Color.RED),
-	Wall			(Color.BLACK),
-	Sentry			(Color.BLUE),
-	SentryGuard		(Color.CYAN),
-	Shade 			(Color.GRAY),
-	ShadeGuard 		(new Color(0,200,0)),
-	ShadeIntruder 	(new Color(200,0,0)),
-	Window			(Color.YELLOW),
-	Door			(new Color(102,51,0)),
-	Target			(Color.ORANGE),
-	TargetIntruder	(Color.MAGENTA),
-	TargetGuard		(new Color(107,142,35)),
-	Tree			(new Color(128,128,0)),
-	OuterWall		(Color.DARK_GRAY);
-	
-	
-	Color color;
-	GridState(Color color){
+	//					Color					Moveable
+	Empty			(	Color.WHITE, 			true		),
+	Guard			(	Color.GREEN, 			false		),
+	Intruder		(	Color.RED,				false		),
+	Wall			(	Color.BLACK, 			false		),
+	Sentry			(	Color.BLUE,				false		),
+	SentryGuard		(	Color.CYAN,				false		),
+	Shade 			(	Color.GRAY,				true		),
+	ShadeGuard 		(	new Color(0,200,0),		false		),
+	ShadeIntruder 	(	new Color(200,0,0),		false		),
+	Window			(	Color.YELLOW,			false		),
+	Door			(	new Color(102,51,0),	false		),
+	Target			(	Color.ORANGE,			true		),
+	TargetIntruder	(	Color.MAGENTA,			false		),
+	TargetGuard		(	new Color(107,142,35),	false		),
+	Tree			(	new Color(128,128,0),	false		),
+	OuterWall		(	Color.DARK_GRAY,		false		);
+
+
+
+	GridState(Color color, boolean moveable){
 		this.color = color;
+		m_moveable = moveable;
 	}
-	
+
 	public Color color(){
 		return color;
 	}
+
+	public boolean moveable(){
+		return m_moveable;
+	}
+
+	Color color;
+	private boolean m_moveable;
 }
