@@ -11,7 +11,7 @@ import model.commands.GridState;
 import model.commands.Move;
 
 public class MoveAgents {
-	private boolean m_debug = true;
+	private boolean m_debug = false;
 	public MoveAgents(List<Guard> guards, Map map)
 	{
 		ml_guards = guards;
