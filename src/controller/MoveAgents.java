@@ -40,12 +40,12 @@ public class MoveAgents {
 
 		double angle = (coords.getAngle() + move.getAngle()) % (2*Math.PI);
 
-		int x = coords.getX() + move.right();
-		int y = coords.getY() + move.top();
+		int x = coords.getX() + move.right(angle);
+		int y = coords.getY() + move.top(angle);
 
 		if(m_debug){
-			System.out.println("Relative move right: " + move.right());
-			System.out.println("Relative move top: " + move.top());
+			System.out.println("Relative move right: " + move.right(angle));
+			System.out.println("Relative move top: " + move.top(angle));
 			System.out.println("new x: " + x);
 			System.out.println("new y: " + y);
 		}

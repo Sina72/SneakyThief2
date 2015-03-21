@@ -29,20 +29,20 @@ public class Move {
 				);
 	}
 
-	public int right(){
-		return Map.metersToGridStates(cos(m_angle) * m_speed * m_time);
+	public int right(double angle){
+		return Map.metersToGridStates(cos(angle) * m_speed * m_time);
 	}
 
-	public int top(){
-		return Map.metersToGridStates(sin(m_angle) * m_speed * m_time);
+	public int top(double angle){
+		return Map.metersToGridStates(sin(angle) * m_speed * m_time);
 	}
 
-	public int left(){
-		return -right();
+	public int left(double angle){
+		return -right(angle);
 	}
 
-	public int bottom(){
-		return -top();
+	public int bottom(double angle){
+		return -top(angle);
 	}
 
 	public double getSpeed()
