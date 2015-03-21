@@ -3,8 +3,6 @@ package controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.prism.image.Coords;
-
 import model.Guard;
 import model.Map;
 import model.commands.Coordinates;
@@ -24,7 +22,7 @@ public class AgentIndex {
 	{
 		m_map = map;
 	}
-	
+
 	public void placeDefaultAgents(){
 		placeDefaultAgents(0);
 	}
@@ -43,11 +41,10 @@ public class AgentIndex {
 	 * @param coords a list of coordinates
 	 */
 	public void addAllGuards(ArrayList<Coordinates> coords){
-		for(Coordinates c:coords){
+		for(Coordinates c:coords)
 			addGuard(c);
-		}
 	}
-	
+
 	/**
 	 * Add a guard to the map
 	 * @param coord the coordinates where the guard should be placed
@@ -56,21 +53,21 @@ public class AgentIndex {
 		/* init the guard */
 		Guard guard = new Guard(coord);
 		guard.LoadSettingsXML("./settings/settings.xml");
-		
+
 		/* place the guard on the map */
 		if(m_map.getMap()[coord.getX()][coord.getY()] == GridState.Empty){
 			m_map.getMap()[coord.getX()][coord.getY()] = GridState.Guard;
 			ml_guards.add(guard);
 		}
-		else 
+		else
 			System.err.println("The agent can't be placed at "+ coord.getX() + ", " + coord.getY());
 	}
-	
+
 	public List<Guard> getGuardList()
 	{
 		return ml_guards;
 	}
-	
+
 	private List<Guard> ml_guards = new ArrayList<Guard>();
 	private Map m_map;
 }

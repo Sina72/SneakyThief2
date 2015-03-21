@@ -14,7 +14,7 @@ import model.commands.GridState;
 import model.commands.Move;
 
 public class MoveAgents {
-	private boolean m_debug = true;
+	private boolean m_debug = false;
 	public MoveAgents(List<Guard> guards, Map map)
 	{
 		ml_guards = guards;
@@ -57,6 +57,7 @@ public class MoveAgents {
 		if(m_debug) reportMove(agent, distance, tiles, coords, angle);
 
 		return coords;
+		//return null;
 	}
 
 	private void reportMove(Agent agent, double distance, int tiles, Coordinates coords, double angle){

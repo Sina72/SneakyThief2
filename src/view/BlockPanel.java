@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 import model.commands.GridState;
 
+@SuppressWarnings("serial")
 public class BlockPanel extends JPanel
 {
 	public BlockPanel(){
