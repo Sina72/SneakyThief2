@@ -24,7 +24,6 @@ public class Scheduler {
 		schedule();	
 	}
 	
-	
 	private void schedule(){
 		timer = new Timer();
 		timer.scheduleAtFixedRate(
