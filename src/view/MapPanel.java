@@ -3,17 +3,13 @@ package view;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Line2D;
-import java.util.List;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JPanel;
 
-import com.sun.corba.se.spi.orbutil.fsm.Guard;
-
-import model.Intruder;
 import model.Map;
 import model.commands.GridState;
 
@@ -22,51 +18,78 @@ import model.commands.GridState;
  */
 public class MapPanel extends JPanel implements Observer {
 
-	// THIS PANEL PLACED ON THE RIGHT OF THE BORDER LAYOUT
-	private Map map;
+	// THIS PANEL PLACED IN THE CENTER OF THE BORDER LAYOUT
+
 	
-	public Map getMap(){
-		return map;
-	}
+	
+	/*		Constants		*/
+	private static int pxPerGridState = 0;
 
-	private final static double PX_PER_M = 3779.527559055;
-
-	private static int scale = 4;
-
-	public MapPanel(Map map) {
-		// TODO: Make scale dependent on screen size, i.e. make map grow with
-		// screen size
-		// scale = Math.max(map.getMapWidth(),map.getMapHeight()) /
-		// Math.min(super.getWidth(), super.getHeight());
+	
+	/*	Constructors	*/
+	public MapPanel(final Map map) {
 		this.map = map;
 		this.setSize(getMaximumSize());
 		this.setBackground(Color.BLACK);
 		this.setOpaque(true);
-//		if(this.WIDTH>this.HEIGHT)
-//		{
-//			scale = map.getMap().length/this.HEIGHT;
-//		}
-//		else
-//		{
-//			scale = map.getMap().length/this.WIDTH;
-//		}
 		
+		this.addComponentListener(new ComponentListener(){
+
+			private int calculatePxPerGridState(){
+				int width = getSize().width, height = getSize().height;
+				return Math.min(
+						width / map.width(), 
+						height / map.height())
+						;
+			}
+			
+			@Override
+			public void componentResized(ComponentEvent e) {
+				MapPanel.pxPerGridState = calculatePxPerGridState();
+			}
+
+			@Override
+			public void componentMoved(ComponentEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void componentShown(ComponentEvent e) {
+				MapPanel.pxPerGridState = calculatePxPerGridState();
+			}
+
+			@Override
+			public void componentHidden(ComponentEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 	}
 
+	/*		Conversion Methods		*/
+	
 	/**
-	 * Scales from meters to pixels
-	 * 
-	 * @return
+	 * Converts from amount of gridstates to amount of pixels
+	 * @param gridstates amount of gridstates
+	 * @return amount of pixels representing the gridstates
 	 */
-//	private double scale(double meters) {
-//		double widthPanel = this.getWidth();
-//		double heightPanel = this.getHeight();
-//		double scaleHeight = widthPanel/map.getMapHeight();
-//		double scaleWidth = heightPanel/map.getMapWidth();
-//		this.scale = Math.min(scaleHeight, scaleWidth)/4000;
-//		return meters * PX_PER_M * scale;
-//	}
+	public static int gridStatesToPx(int gridstates){
+		return gridstates * pxPerGridState;
+	}
+	
+	/**
+	 * Converts from amount of pixels to amount of gridstates
+	 * @param pixels amount of pixels
+	 * @return amount of gridstates in a pixel (rounded down)
+	 */
+	public static int pxToGridStates(int pixels){
+		return pixels / pxPerGridState;
+	}
 
+	/* 			Painting Methods			*/
+	
 	@Override
 	public void update(Observable o, Object arg) {
 		repaint();
@@ -94,16 +117,13 @@ public class MapPanel extends JPanel implements Observer {
 				
 				//CHANGE COLOR DEPENDING ON THE GRIDSTATE
 				g2.setColor(currentstate.color());
-				g2.fill3DRect(i*scale, j*scale, scale, scale, false);
+				g2.fill3DRect(i*pxPerGridState, j*pxPerGridState, pxPerGridState, pxPerGridState, false);
 				
 			}
 		}
 
 	}
 	
-	
-	
-
 	public void paintComponent(Graphics g) {
 
 		super.paintComponent(g);
@@ -113,4 +133,13 @@ public class MapPanel extends JPanel implements Observer {
 		drawMap(g);
 
 	}
+	
+	/*		Getters/Setters		*/
+	public Map getMap(){
+		return map;
+	}
+	
+	
+	/* 		Instance Variables	*/
+	private Map map;
 }
